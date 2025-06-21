@@ -11,6 +11,8 @@ public class BirdController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        rb.gravityScale = 0;
         
         if (rb == null)
         {
