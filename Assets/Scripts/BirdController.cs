@@ -12,12 +12,13 @@ public class BirdController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        rb.gravityScale = 0;
         
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component is missing from the GameObject.");
         }
+
+        rb.gravityScale = 0;
     }
 
 
