@@ -82,6 +82,7 @@ public class PipeManager : MonoBehaviour
     
     public void StartSpawningPipes()
     {
+        print("Starting pipe spawning.");
         nextSpawnTime = Time.time + spawnInterval;
     }
 }
