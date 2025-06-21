@@ -50,8 +50,9 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Game is already started.");
             return;
         }
-
+        
         isGamneStarted = true;
+        PipeManager.Instance.StartSpawningPipes();
         Debug.Log("Game started");
     }
 }
