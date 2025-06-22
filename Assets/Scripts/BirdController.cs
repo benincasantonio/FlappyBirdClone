@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class BirdController : MonoBehaviour
 {
     [SerializeField]
-    private float jumopForce = 5f;
+    private float jumpForce = 5f;
 
     private Rigidbody2D rb;
 
@@ -26,6 +26,12 @@ public class BirdController : MonoBehaviour
     {
         if (context.performed)
         {
+            if (!GameManager.Instance.IsGameStarted)
+            {
+                GameManager.Instance.StartGame();
+                rb.gravityScale = 1;
+            }
+
             print("Jump action performed");
             Jump();
         }
@@ -33,10 +39,10 @@ public class BirdController : MonoBehaviour
 
     private void Jump()
     {
-        print("Jumping with force: " + jumopForce);
+        print("Jumping with force: " + jumpForce);
         if (rb != null)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumopForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
         else
         {
