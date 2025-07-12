@@ -6,6 +6,18 @@ public class GameManager : MonoBehaviour
 
     private bool isGamneStarted = false;
 
+    private int score = 0;
+
+    public int Score
+    {
+        get { return score; }
+    }
+
+    public void IncreaseScore()
+    {
+        score++;
+    }
+
     public bool IsGameStarted
     {
         get { return isGamneStarted; }
