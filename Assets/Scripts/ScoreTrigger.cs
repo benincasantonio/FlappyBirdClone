@@ -2,12 +2,43 @@ using UnityEngine;
 
 public class ScoreTrigger : MonoBehaviour
 {
+    AudioSource audioSource;
+    [SerializeField]
+    private AudioClip scoreSound;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogWarning("AudioSource component not found on ScoreTrigger. Please add one for sound effects.");
+        }
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        GameManager.Instance.IncreaseScore();
-        // play a sound effect or visual feedback here if desired
-        // For example, you could use AudioManager to play a sound effect
-        
-        Debug.Log("Score increased! Current score: " + GameManager.Instance.Score);  
+
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.IncreaseScore();
+        }
+
+        Debug.Log("Score increased! Current score: " + GameManager.Instance.Score);
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        PlayScoreSound();
+    }
+
+    private void PlayScoreSound()
+    {
+        if (audioSource != null && scoreSound != null)
+        {
+            audioSource.PlayOneShot(scoreSound);
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource or score sound not set on ScoreTrigger.");
+        }
     }
 }

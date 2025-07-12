@@ -127,7 +127,11 @@ public class PipeManager : MonoBehaviour
     /// </summary>
     void CreateScoreTrigger(GameObject topPipe, GameObject bottomPipe)
     {
-        Vector3 triggerPosition = new Vector3(SPAWN_POSITION_X, (topPipe.transform.position.y + bottomPipe.transform.position.y) / 2f, 0f);
+        Vector3 triggerPosition = new Vector3(
+            SPAWN_POSITION_X,
+            (topPipe.transform.position.y + bottomPipe.transform.position.y) / 2f,
+            0f
+        );
 
         GameObject scoreTrigger = Instantiate(scoreTriggerPrefab, triggerPosition, Quaternion.identity);
         scoreTrigger.transform.parent = topPipe.transform;
@@ -138,7 +142,8 @@ public class PipeManager : MonoBehaviour
             collider = scoreTrigger.AddComponent<BoxCollider2D>();
         }
         collider.isTrigger = true;
-        collider.size = new Vector2(1f, gapSize);
+        collider.size = new Vector2(0.5f, gapSize);
+        collider.offset = Vector2.zero;
     }
 
     void CalculateGapCenters()
