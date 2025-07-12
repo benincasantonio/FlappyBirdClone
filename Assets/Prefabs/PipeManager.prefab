@@ -46,4 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topPipePrefab: {fileID: 6698955681411329213, guid: 1afacadaf29204fb1be6abe368145a17, type: 3}
   bottomPipePrefab: {fileID: 6698955681411329213, guid: 1afacadaf29204fb1be6abe368145a17, type: 3}
+  scoreTriggerPrefab: {fileID: 3189484819456928376, guid: f33f52d75a1dc4af884396296bf91184, type: 3}
   spawnInterval: 2
+  gapSize: 3

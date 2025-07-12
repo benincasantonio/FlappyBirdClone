@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,6 +6,20 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     private bool isGamneStarted = false;
+    private TMP_Text scoreText;
+
+    private int score = 0;
+
+    public int Score
+    {
+        get { return score; }
+    }
+
+    public void IncreaseScore()
+    {
+        score++;
+        UIManager.Instance.UpdateTextScore(score);
+    }
 
     public bool IsGameStarted
     {
@@ -31,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        UIManager.Instance.UpdateTextScore(score);
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -41,7 +58,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    
 
     public void StartGame()
     {
