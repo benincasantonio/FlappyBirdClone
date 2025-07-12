@@ -8,6 +8,9 @@ public class PipeManager : MonoBehaviour
     private GameObject bottomPipePrefab;
 
     [SerializeField]
+    private GameObject scoreTriggerPrefab;
+
+    [SerializeField]
     /// <summary>
     /// Interval in seconds between pipe spawns.
     /// </summary>
@@ -126,18 +129,16 @@ public class PipeManager : MonoBehaviour
     {
         Vector3 triggerPosition = new Vector3(SPAWN_POSITION_X, (topPipe.transform.position.y + bottomPipe.transform.position.y) / 2f, 0f);
 
-        GameObject scoreTrigger = new GameObject("ScoreTrigger");
+        GameObject scoreTrigger = Instantiate(scoreTriggerPrefab, triggerPosition, Quaternion.identity);
         scoreTrigger.transform.parent = topPipe.transform;
-        scoreTrigger.transform.position = triggerPosition;
 
-        
-
-        BoxCollider2D collider = scoreTrigger.AddComponent<BoxCollider2D>();
+        BoxCollider2D collider = scoreTrigger.GetComponent<BoxCollider2D>();
+        if (collider == null)
+        {
+            collider = scoreTrigger.AddComponent<BoxCollider2D>();
+        }
         collider.isTrigger = true;
-
         collider.size = new Vector2(1f, gapSize);
-
-        scoreTrigger.AddComponent<ScoreTrigger>();
     }
 
     void CalculateGapCenters()
