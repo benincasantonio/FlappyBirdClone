@@ -109,11 +109,35 @@ public class PipeManager : MonoBehaviour
         GameObject topPipe = Instantiate(topPipePrefab, topPipePosition, Quaternion.identity);
         GameObject bottomPipe = Instantiate(bottomPipePrefab, bottomPipePosition, Quaternion.identity);
 
+
         if (topPipe == null || bottomPipe == null)
         {
             Debug.LogError("Failed to instantiate pipes. Check if prefabs are assigned.");
             return;
         }
+        
+        CreateScoreTrigger(topPipe, bottomPipe);
+    }
+
+    /// <summary>
+    /// Create a score trigger between the top and bottom pipes.
+    /// </summary>
+    void CreateScoreTrigger(GameObject topPipe, GameObject bottomPipe)
+    {
+        Vector3 triggerPosition = new Vector3(SPAWN_POSITION_X, (topPipe.transform.position.y + bottomPipe.transform.position.y) / 2f, 0f);
+
+        GameObject scoreTrigger = new GameObject("ScoreTrigger");
+        scoreTrigger.transform.parent = topPipe.transform;
+        scoreTrigger.transform.position = triggerPosition;
+
+        
+
+        BoxCollider2D collider = scoreTrigger.AddComponent<BoxCollider2D>();
+        collider.isTrigger = true;
+
+        collider.size = new Vector2(1f, gapSize);
+
+        scoreTrigger.AddComponent<ScoreTrigger>();
     }
 
     void CalculateGapCenters()
@@ -126,7 +150,6 @@ public class PipeManager : MonoBehaviour
     
     public void StartSpawningPipes()
     {
-        print("Starting pipe spawning.");
         nextSpawnTime = Time.time + spawnInterval;
     }
 }
