@@ -89,6 +89,11 @@ public class PipeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.IsGameOver)
+        {
+            return;
+        }
+        
         if (GameManager.Instance.IsGameStarted && Time.time >= nextSpawnTime)
         {
             SpawnPipes();

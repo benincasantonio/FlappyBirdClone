@@ -9,6 +9,24 @@ public class GameManager : MonoBehaviour
     private TMP_Text scoreText;
 
     private int score = 0;
+    private bool isGameOver = false;
+
+
+    public bool IsGameOver
+    {
+        get { return isGameOver; }
+    }
+
+    public void GameOver()
+    {
+        if (isGameOver)
+        {
+            Debug.LogWarning("Game is already over.");
+            return;
+        }
+
+        isGameOver = true;
+    }
 
     public int Score
     {

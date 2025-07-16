@@ -20,7 +20,7 @@ public class Pipe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.IsGameStarted)
+        if (GameManager.Instance.IsGameStarted && !GameManager.Instance.IsGameOver)
         {
             MovePipe();
         }
@@ -30,10 +30,19 @@ public class Pipe : MonoBehaviour
     private void MovePipe()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
-        
+
         if (leftEdge - transform.position.x > 3f)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.GameOver();
+            Debug.Log("Game Over! Bird collided with pipe.");
         }
     }
 }

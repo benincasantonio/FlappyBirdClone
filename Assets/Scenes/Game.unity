@@ -654,6 +654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird
       objectReference: {fileID: 0}
+    - target: {fileID: 6863940177787383072, guid: 2ae3a46dd39aa42a3bc7c6a6655ac7e3, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6938057369277772268, guid: 2ae3a46dd39aa42a3bc7c6a6655ac7e3, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
